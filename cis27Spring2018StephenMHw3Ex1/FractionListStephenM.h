@@ -39,7 +39,7 @@ FractionSMAddrT createFractionStephenM(int, int);
 
 FracNodeSMAddrT createFractionNodeStephenM(FractionSMAddrT);
 
-int getGCD(int, int);
+int getGCD(int, int); 
 
 // insertion function prototypes
 

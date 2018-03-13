@@ -136,7 +136,7 @@ int isEmptyStephenM(FracNodeSMAddrT frList) {
         emptyFlag = 0;
     
     return emptyFlag;
-}
+} 
 
 int getLengthStephenM(FracNodeSMAddrT frList) {
     FracNodeSMPtrT current = NULL;

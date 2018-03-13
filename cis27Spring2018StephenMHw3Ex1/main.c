@@ -19,7 +19,7 @@ void showClassInfo(void);
 int main(int argc, const char * argv[]) {
     runMainMenuStephenMHw3();
     return 0;
-}
+} 
 
 // menu utility function definitions
 void runMainMenuStephenMHw3() {
