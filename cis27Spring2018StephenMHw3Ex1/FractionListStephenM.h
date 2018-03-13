@@ -37,7 +37,7 @@ typedef FracNodeSMT* FracNodeSMPtrT;
 
 FractionSMAddrT createFractionStephenM(int, int);
 
-FracNodeSMAddrT createFractionNodeStephenM(FractionSMAddrT);
+FracNodeSMPtrT createFractionNodeStephenM(FractionSMAddrT);
 
 int getGCD(int, int); 
 
@@ -53,7 +53,7 @@ void appendFracNodeStephenM(FracNodeSMAddrT, FracNodeSMAddrT*);
 
 void removeFirstNodeStephenM(FracNodeSMAddrT*);
 
-void removeChosenNodeStephenM(FracNodeSMAddrT*, FractionSMT);
+void removeChosenNodeStephenM(FracNodeSMAddrT*, int);
 
 void removeLastNodeStephenM(FracNodeSMAddrT*);
 
@@ -66,5 +66,7 @@ int getLengthStephenM(FracNodeSMAddrT);
 void displayListStephenM(FracNodeSMAddrT);
 
 void displayNumberedListStephenM(FracNodeSMAddrT);
+
+void freeFractionListStephenM(FracNodeSMAddrT*);
 
 #endif /* FractionStephenM_h */

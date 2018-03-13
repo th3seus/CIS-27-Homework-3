@@ -20,6 +20,8 @@ FractionSMAddrT createFractionStephenM(int num, int denom) {
         tempFrac = NULL;
     }
     
+    tempFrac = (FractionSMPtrT)malloc(sizeof(FractionSMT));
+    
     tempFrac->num = num / getGCD(num, denom);
     tempFrac->denom = denom / getGCD(num, denom);
     
@@ -31,13 +33,15 @@ FractionSMAddrT createFractionStephenM(int num, int denom) {
     return tempFrac;
 }
 
-FracNodeSMAddrT createFractionNodeStephenM(FractionSMAddrT newFrac) {
+FracNodeSMPtrT createFractionNodeStephenM(FractionSMAddrT newFrac) {
     FracNodeSMPtrT tempFrNode = NULL;
     
     if (tempFrNode != NULL) {
         free(tempFrNode);
         tempFrNode = NULL;
     }
+    
+    tempFrNode = (FracNodeSMPtrT)malloc(sizeof(FracNodeSMT));
     
     tempFrNode->frAddr = newFrac;
     tempFrNode->next = NULL;
@@ -108,6 +112,7 @@ void appendFracNodeStephenM(FracNodeSMAddrT newNode, FracNodeSMAddrT* frList) {
 
 void removeFirstNodeStephenM(FracNodeSMAddrT* frList) {
     FracNodeSMPtrT tempFrNode = NULL;
+    FractionSMPtrT tempFrac = NULL;
     
     if (*frList == NULL) {
         printf("\n     List is empty");
@@ -117,12 +122,66 @@ void removeFirstNodeStephenM(FracNodeSMAddrT* frList) {
     tempFrNode = *frList;
     
     *frList = tempFrNode->next;
+    
+    tempFrac = tempFrNode->frAddr;
+    
+    free(tempFrac);
+    tempFrac = NULL;
     free(tempFrNode);
+    tempFrac = NULL;
+    
 }
 
-void removeChosenNodeStephenM(FracNodeSMAddrT*, FractionSMT);
+void removeChosenNodeStephenM(FracNodeSMAddrT* frList, int nodeFlag) {
+    FracNodeSMPtrT prevNode = NULL;
+    FracNodeSMPtrT tempNode = NULL;
+    FractionSMPtrT tempFrac = NULL;
+    
+    nodeFlag--; // find node before node to be removed
+    prevNode = *frList;
+    
+    do {
+        prevNode = prevNode->next;
+        nodeFlag--;
+    } while (nodeFlag >= 0);
+    
+    tempNode = prevNode->next;
+    tempFrac = tempNode->frAddr;
+    
+    prevNode = tempNode->next;
+    
+    free(tempFrac);
+    tempFrac = NULL;
+    free(tempNode);
+    tempNode = NULL;
+}
 
-void removeLastNodeStephenM(FracNodeSMAddrT*);
+void removeLastNodeStephenM(FracNodeSMAddrT* frList) {
+    FracNodeSMPtrT prevNode = NULL;
+    FracNodeSMPtrT tempNode = NULL;
+    FractionSMPtrT tempFrac = NULL;
+    
+    prevNode = *frList;
+    
+    if (prevNode->next == NULL) {
+        free(prevNode);
+        prevNode = NULL;
+        return;
+    } else {
+        while (prevNode->next != NULL) {
+            if (prevNode->next->next == NULL) {
+                tempNode = prevNode->next;
+                tempFrac = tempNode->frAddr;
+                prevNode->next = NULL;
+                
+                free(tempFrac);
+                tempFrac = NULL;
+                free(tempNode);
+                tempNode = NULL;
+            }
+            prevNode = prevNode->next;        }
+    }
+}
 
 // utility function definitions
 
@@ -183,9 +242,14 @@ void displayNumberedListStephenM(FracNodeSMAddrT frList) {
     
     while (temp != NULL) {
         tempFrPtr = temp->frAddr;
-        printf("\n     Fraction %d: (%d,%d)", i, tempFrPtr->num, tempFrPtr->denom);
+        printf("\n        (%d,%d) at position %d", tempFrPtr->num, tempFrPtr->denom, i);
         
         temp = temp->next;
         i++;
     }
+}
+
+void freeFractionListStephenM(FracNodeSMAddrT* frList) {
+    while (*frList != NULL)
+        removeLastNodeStephenM(frList);
 }

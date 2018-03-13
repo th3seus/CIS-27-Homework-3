@@ -8,6 +8,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include "FractionListStephenM.h"
 
 // menu utility function prototypes
 void runMainMenuStephenMHw3(void);
@@ -26,7 +27,7 @@ void runMainMenuStephenMHw3() {
     int menuOption;
     int tempNum;
     int tempDenom;
-    // FracListAddrT list = NULL;
+    FracNodeSMAddrT userFrList = NULL;
     
     showClassInfo();
     
@@ -38,26 +39,57 @@ void runMainMenuStephenMHw3() {
         switch (menuOption) {
             case 1: // Display current Linked List
                 printf("\n  You chose menu option 1 - Display Current Linked List");
-                /* if (list == NULL) {
-                    printf("Your list is empty - please create a list to display");
+                if (isEmptyStephenM(userFrList)) {
+                    printf("\n\n  Your list is empty - please create a list to display");
                     break;
                  } else {
-                    displayListStephenM(list);
+                    displayListStephenM(userFrList);
                  }
-                 */
+                
                 break;
             case 2: // go to Insertion Menu
                 printf("\n  You chose to insert data into the linked list");
                 menuOption = 0;
-                /*do {
-                    showInsertionMenuOption();
+                do {
+                    showInsertionMenuOptions();
                     printf("\n  Select the option (1, 2, 3, 4, or 5): ");
                     scanf("%d", &menuOption);
                  
                     switch (menuOption) {
                     case 1: // insert new node at head of list
+                            printf("\n  Please enter an integer for the numerator: ");
+                            scanf("%d", &tempNum);
+                            
+                            do {
+                                printf("\n  Please enter a non-zero integer for the denominator: ");
+                                scanf("%d", &tempDenom);
+                                if (tempDenom == 0)
+                                    printf("\n    DENOMINATOR CANNOT BE ZERO\n");
+                            } while (tempDenom == 0);
+                            
+                            insertFirstStephenM(createFractionNodeStephenM(createFractionStephenM(tempNum, tempDenom)), &userFrList);
                         break;
                     case 2: // insert new node after the n-th node
+                            if (isEmptyStephenM(userFrList)) {
+                                printf("\n  List is empty! Creating new list head instead\n");
+                                
+                                printf("\n  Please enter an integer for the numerator: ");
+                                scanf("%d", &tempNum);
+                                
+                                do {
+                                    printf("\n  Please enter a non-zero integer for the denominator: ");
+                                    scanf("%d", &tempDenom);
+                                    if (tempDenom == 0)
+                                        printf("\n    DENOMINATOR CANNOT BE ZERO\n");
+                                } while (tempDenom == 0);
+                                
+                                insertFirstStephenM(createFractionNodeStephenM(createFractionStephenM(tempNum, tempDenom)), &userFrList);
+                                break;
+                            } else {
+                                displayNumberedListStephenM(userFrList);
+                                
+                                
+                            }
                         break;
                     case 3: // insert new node at end of list
                         break;
@@ -68,7 +100,7 @@ void runMainMenuStephenMHw3() {
                     default: // wrong option
                         break;
                     }
-                } while (menuOption != 5);*/
+                } while (menuOption != 5);
                 break;
             case 3: // go to Removal Menu
                 
@@ -96,10 +128,10 @@ void runMainMenuStephenMHw3() {
                  } while (menuOption != 5);*/
                 break;
             case 4: // quit application
-                printf("\n  Fractions and Linked Lists -- Fun!");
+                printf("\n  Fractions and Linked Lists -- Fun!\n");
                 break;
             default: // wrong option
-                printf("\n You must be kidding...\n");
+                printf("\n  You must be kidding...\n");
                 break;
         }
     } while (menuOption != 4);
