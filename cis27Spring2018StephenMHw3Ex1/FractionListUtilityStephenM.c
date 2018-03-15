@@ -159,7 +159,7 @@ void showMainMenuOptions() {
            "\n* 4. Quit                     *"
            "\n*******************************");
 }
-
+ 
 void showInsertionMenuOptions() {
     printf("\n     **********************"
            "\n     *   Insertion Menu   *"

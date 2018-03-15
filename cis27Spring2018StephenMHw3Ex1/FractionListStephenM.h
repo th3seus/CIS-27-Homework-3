@@ -47,7 +47,7 @@ void insertFirstStephenM(FracNodeSMAddrT, FracNodeSMAddrT* /* address of linked 
 void insertAfterNodeStephenM(FracNodeSMAddrT, FracNodeSMAddrT*, int);
 
 void appendFracNodeStephenM(FracNodeSMAddrT, FracNodeSMAddrT*);
-
+ 
 // removeal function prototypes
 
 void removeFirstNodeStephenM(FracNodeSMAddrT*);

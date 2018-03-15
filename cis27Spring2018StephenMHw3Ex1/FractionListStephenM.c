@@ -102,7 +102,7 @@ void insertAfterNodeStephenM(FracNodeSMAddrT newNode,
 
 void appendFracNodeStephenM(FracNodeSMAddrT newNode, FracNodeSMAddrT* frList) {
     FracNodeSMPtrT tempFrNode = NULL;
-    
+     
     if (*frList != NULL) {
         tempFrNode = *frList;
         while (tempFrNode->next != NULL) {

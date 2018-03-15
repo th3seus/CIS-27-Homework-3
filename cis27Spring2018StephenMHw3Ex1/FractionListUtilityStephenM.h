@@ -4,7 +4,7 @@
  * Written By:   Stephen M
  * Due Date:     2018/03/15
  */
-
+ 
 #ifndef FractionListUtilityStephenM_h
 #define FractionListUtilityStephenM_h
 #include "FractionListStephenM.h"
