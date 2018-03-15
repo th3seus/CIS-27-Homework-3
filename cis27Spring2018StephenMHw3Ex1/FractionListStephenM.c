@@ -1,10 +1,9 @@
-//
-//  FractionListStephenM.c
-//  cis27Spring2018StephenMHw3Ex1
-//
-//  Created by Stephen Miller on 3/12/18.
-//  Copyright © 2018 Stephen Miller. All rights reserved.
-//
+/**
+ * Program Name: cis27Spring2018StephenMHw3Ex1.c
+ * Discussion:   Homework #3
+ * Written By:   Stephen M
+ * Due Date:     2018/03/15
+ */
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -73,8 +72,8 @@ void insertFirstStephenM(FracNodeSMAddrT newNode, FracNodeSMAddrT* frList) {
     }
 }
 
-void insertAfterNodeStephenM(FracNodeSMAddrT* frList,
-                             FracNodeSMAddrT newNode, int nodeFlag) {
+void insertAfterNodeStephenM(FracNodeSMAddrT newNode,
+                             FracNodeSMAddrT* frList, int nodeFlag) {
     FracNodeSMPtrT prevNode = NULL;
     
     if (prevNode != NULL) {
@@ -83,13 +82,22 @@ void insertAfterNodeStephenM(FracNodeSMAddrT* frList,
     }
     
     prevNode = *frList;
-    do {
-        prevNode = prevNode->next;
-        nodeFlag--;
-    } while (nodeFlag >= 0);
+    if (prevNode->next == NULL) {
+        prevNode->next = newNode;
+    }
+    else if (nodeFlag == 0) {
+        newNode->next = prevNode->next;
+        prevNode->next = newNode;
+    }
+    else {
+        do {
+            prevNode = prevNode->next;
+            nodeFlag--;
+        } while (nodeFlag > 0);
     
-    newNode->next = prevNode->next;
-    prevNode->next = newNode;
+            newNode->next = prevNode->next;
+            prevNode->next = newNode;
+    }
 }
 
 void appendFracNodeStephenM(FracNodeSMAddrT newNode, FracNodeSMAddrT* frList) {
@@ -203,6 +211,10 @@ int getLengthStephenM(FracNodeSMAddrT frList) {
     
     current = frList;
     
+    if (current == NULL)
+        return 0;
+    if (current->next == NULL)
+        return 1;
     while (current != NULL) {
         current = current->next;
         count++;

@@ -1,10 +1,9 @@
-//
-//  FractionStephenM.h
-//  cis27Spring2018StephenMHw3Ex1
-//
-//  Created by Stephen Miller on 3/12/18.
-//  Copyright © 2018 Stephen Miller. All rights reserved.
-//
+/**
+ * Program Name: cis27Spring2018StephenMHw3Ex1.c
+ * Discussion:   Homework #3
+ * Written By:   Stephen M
+ * Due Date:     2018/03/15
+ */
 
 #ifndef FractionListStephenM_h
 #define FractionListStephenM_h
@@ -45,7 +44,7 @@ int getGCD(int, int);
 
 void insertFirstStephenM(FracNodeSMAddrT, FracNodeSMAddrT* /* address of linked list */);
 
-void insertAfterNodeStephenM(FracNodeSMAddrT*, FracNodeSMAddrT, int);
+void insertAfterNodeStephenM(FracNodeSMAddrT, FracNodeSMAddrT*, int);
 
 void appendFracNodeStephenM(FracNodeSMAddrT, FracNodeSMAddrT*);
 
