@@ -20,15 +20,15 @@ FractionSMAddrT createFractionStephenM(int num, int denom) {
     }
     
     tempFrac = (FractionSMPtrT)malloc(sizeof(FractionSMT));
+ 
     
     tempFrac->num = num / getGCD(num, denom);
     tempFrac->denom = denom / getGCD(num, denom);
     
     if (denom < 0) {
-        num = -num;
-        denom = -denom;
+        tempFrac->num = -tempFrac->num;
+        tempFrac->denom = -tempFrac->denom;
     }
-    
     return tempFrac;
 }
 
@@ -127,39 +127,77 @@ void removeFirstNodeStephenM(FracNodeSMAddrT* frList) {
         return;
     }
     
+    if((*frList)->next == NULL) {
+        free((*frList)->frAddr);
+        (*frList)->frAddr = NULL;
+        
+        free(*frList);
+        *frList = NULL;
+        return;
+    }
+    
     tempFrNode = *frList;
     
     *frList = tempFrNode->next;
     
     tempFrac = tempFrNode->frAddr;
     
+    printf("\n     Removing (%d/%d) from the list --\n", tempFrac->num, tempFrac->denom);
+    
     free(tempFrac);
     tempFrac = NULL;
     free(tempFrNode);
-    tempFrac = NULL;
+    tempFrNode = NULL;
     
 }
 
 void removeChosenNodeStephenM(FracNodeSMAddrT* frList, int nodeFlag) {
     FracNodeSMPtrT prevNode = NULL;
     FracNodeSMPtrT tempNode = NULL;
-    FractionSMPtrT tempFrac = NULL;
     
-    nodeFlag--; // find node before node to be removed
     prevNode = *frList;
+    if (prevNode == NULL) {
+        printf("\n     List is empty");
+        return;
+    }
+    if (nodeFlag == getLengthStephenM(prevNode) - 1) {
+        removeLastNodeStephenM(&prevNode);
+        return;
+    }
+    if (nodeFlag == 0) {
+        tempNode = *frList;
+        
+        *frList = tempNode->next;
+        
+        free(tempNode->frAddr);
+        tempNode->frAddr = NULL;
+        free(tempNode);
+        tempNode = NULL;
+        return;
+    }
     
+    if(prevNode->next == NULL) {
+        free(prevNode->frAddr);
+        prevNode->frAddr = NULL;
+        
+        free(prevNode);
+        prevNode = NULL;
+        return;
+    }
+    nodeFlag--; // find node before node to be removed
     do {
         prevNode = prevNode->next;
         nodeFlag--;
-    } while (nodeFlag >= 0);
+    } while (nodeFlag > 0);
     
     tempNode = prevNode->next;
-    tempFrac = tempNode->frAddr;
     
-    prevNode = tempNode->next;
+    prevNode->next = tempNode->next;
     
-    free(tempFrac);
-    tempFrac = NULL;
+    printf("\n     Removing (%d/%d) from the list --\n", tempNode->frAddr->num, tempNode->frAddr->denom);
+    
+    free(tempNode->frAddr);
+    tempNode->frAddr = NULL;
     free(tempNode);
     tempNode = NULL;
 }
@@ -172,6 +210,10 @@ void removeLastNodeStephenM(FracNodeSMAddrT* frList) {
     prevNode = *frList;
     
     if (prevNode->next == NULL) {
+        tempFrac = prevNode->frAddr;
+        
+        free(tempFrac);
+        tempFrac = NULL;
         free(prevNode);
         prevNode = NULL;
         return;
@@ -182,10 +224,14 @@ void removeLastNodeStephenM(FracNodeSMAddrT* frList) {
                 tempFrac = tempNode->frAddr;
                 prevNode->next = NULL;
                 
+                printf("\n     Removing (%d/%d) from the list --\n", tempFrac->num, tempFrac->denom);
+                
                 free(tempFrac);
                 tempFrac = NULL;
                 free(tempNode);
                 tempNode = NULL;
+                
+                return;
             }
             prevNode = prevNode->next;        }
     }
@@ -231,11 +277,14 @@ void displayListStephenM(FracNodeSMAddrT frList) {
     temp = frList;
     listLength = getLengthStephenM(frList);
     
-    printf("\n     There are %d fractions in the list; they are:", listLength);
+    if (listLength == 1)
+        printf("\n     There is 1 fraction in the list; it is:");
+    else
+        printf("\n     There are %d fractions in the list: they are:", listLength);
     
     while (temp != NULL) {
         tempFrPtr = temp->frAddr;
-        printf("\n        (%d,%d)", tempFrPtr->num, tempFrPtr->denom);
+        printf("\n        (%d/%d)", tempFrPtr->num, tempFrPtr->denom);
         
         temp = temp->next;
     }
@@ -250,11 +299,14 @@ void displayNumberedListStephenM(FracNodeSMAddrT frList) {
     temp = frList;
     listLength = getLengthStephenM(frList);
     
-    printf("\n     There are %d fractions in the list; they are:", listLength);
+    if (listLength == 1)
+        printf("\n     There is 1 fraction in the list; it is:");
+    else
+        printf("\n     There are %d fractions in the list: they are:", listLength);
     
     while (temp != NULL) {
         tempFrPtr = temp->frAddr;
-        printf("\n        (%d,%d) at position %d", tempFrPtr->num, tempFrPtr->denom, i);
+        printf("\n        (%d/%d) at position %d", tempFrPtr->num, tempFrPtr->denom, i);
         
         temp = temp->next;
         i++;
@@ -262,6 +314,19 @@ void displayNumberedListStephenM(FracNodeSMAddrT frList) {
 }
 
 void freeFractionListStephenM(FracNodeSMAddrT* frList) {
-    while (*frList != NULL)
-        removeLastNodeStephenM(frList);
+    FracNodeSMPtrT temp = NULL;
+    FracNodeSMPtrT next = NULL;
+    
+    temp = *frList;
+    
+    while (temp != NULL) {
+        next = temp->next;
+        
+        free(temp->frAddr);
+        free(temp);
+        
+        temp = next;
+    }
+    
+    *frList = NULL;
 }
