@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		EAC7EE4420572FF70007A66D /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = EAC7EE4320572FF70007A66D /* main.c */; };
+		EAC7EE4420572FF70007A66D /* cis27Spring2018StephenMHw3Ex1.c in Sources */ = {isa = PBXBuildFile; fileRef = EAC7EE4320572FF70007A66D /* cis27Spring2018StephenMHw3Ex1.c */; };
+		FA1020BF205A4388001B4456 /* FractionListUtilityStephenM.c in Sources */ = {isa = PBXBuildFile; fileRef = FA1020BE205A4388001B4456 /* FractionListUtilityStephenM.c */; };
+		FAFF87B2205841BB00B56074 /* FractionListStephenM.c in Sources */ = {isa = PBXBuildFile; fileRef = FAFF87B1205841BB00B56074 /* FractionListStephenM.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -24,7 +26,11 @@
 
 /* Begin PBXFileReference section */
 		EAC7EE4020572FF70007A66D /* cis27Spring2018StephenMHw3Ex1 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = cis27Spring2018StephenMHw3Ex1; sourceTree = BUILT_PRODUCTS_DIR; };
-		EAC7EE4320572FF70007A66D /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		EAC7EE4320572FF70007A66D /* cis27Spring2018StephenMHw3Ex1.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = cis27Spring2018StephenMHw3Ex1.c; sourceTree = "<group>"; };
+		FA1020BD205A42FE001B4456 /* FractionListUtilityStephenM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FractionListUtilityStephenM.h; sourceTree = "<group>"; };
+		FA1020BE205A4388001B4456 /* FractionListUtilityStephenM.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = FractionListUtilityStephenM.c; sourceTree = "<group>"; };
+		FAFF87B0205841BA00B56074 /* FractionListStephenM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FractionListStephenM.h; sourceTree = "<group>"; };
+		FAFF87B1205841BB00B56074 /* FractionListStephenM.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = FractionListStephenM.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +63,11 @@
 		EAC7EE4220572FF70007A66D /* cis27Spring2018StephenMHw3Ex1 */ = {
 			isa = PBXGroup;
 			children = (
-				EAC7EE4320572FF70007A66D /* main.c */,
+				FAFF87B1205841BB00B56074 /* FractionListStephenM.c */,
+				FAFF87B0205841BA00B56074 /* FractionListStephenM.h */,
+				EAC7EE4320572FF70007A66D /* cis27Spring2018StephenMHw3Ex1.c */,
+				FA1020BD205A42FE001B4456 /* FractionListUtilityStephenM.h */,
+				FA1020BE205A4388001B4456 /* FractionListUtilityStephenM.c */,
 			);
 			path = cis27Spring2018StephenMHw3Ex1;
 			sourceTree = "<group>";
@@ -119,7 +129,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EAC7EE4420572FF70007A66D /* main.c in Sources */,
+				EAC7EE4420572FF70007A66D /* cis27Spring2018StephenMHw3Ex1.c in Sources */,
+				FA1020BF205A4388001B4456 /* FractionListUtilityStephenM.c in Sources */,
+				FAFF87B2205841BB00B56074 /* FractionListStephenM.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
